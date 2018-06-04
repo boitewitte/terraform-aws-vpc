@@ -267,7 +267,7 @@ resource "aws_flow_log" "vpc_log" {
 }
 
 resource "aws_iam_role" "vpc_flow" {
-  name = "vpc_flow_log_role"
+  name = "${module.label.id}-role"
 
   assume_role_policy = <<EOF
 {
@@ -287,7 +287,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "vpc_flow" {
-  name = "vpcFlowLogPolicy"
+  name = "${module.label.id}-policy"
   role = "${aws_iam_role.vpc_flow.id}"
 
   policy = <<EOF
